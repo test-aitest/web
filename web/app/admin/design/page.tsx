@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type { Profile, SocialLink } from "@/lib/types";
 import { getPlatform } from "@/lib/platforms";
+import TiltCard from "@/components/admin/TiltCard";
 
 function lighten(hex: string, amount: number): string {
   const num = parseInt(hex.replace("#", ""), 16);
@@ -152,6 +153,7 @@ export default function DesignPage() {
       {/* Left: Live Preview */}
       <div className="flex-1 flex flex-col items-center justify-center p-8">
         {/* Card */}
+        <TiltCard>
         <div
           className="w-full max-w-[480px] relative overflow-hidden rounded-xl"
           style={{
@@ -197,6 +199,7 @@ export default function DesignPage() {
             style={{ background: `linear-gradient(90deg, transparent 10%, ${lighten(styles.bg_color, 10)}20 50%, transparent 90%)` }}
           />
         </div>
+        </TiltCard>
         <p className="text-gray-500 text-xs mt-4">リアルタイムプレビュー</p>
       </div>
 

@@ -2,6 +2,7 @@
 
 import type { Profile, SocialLink } from "@/lib/types";
 import { getPlatform } from "@/lib/platforms";
+import TiltCard from "./TiltCard";
 
 interface Props {
   profile: Profile;
@@ -25,6 +26,7 @@ export default function LivePreview({ profile, links }: Props) {
   return (
     <div className="flex flex-col items-center justify-center h-full">
       {/* Card */}
+      <TiltCard>
       <div
         className="w-full max-w-[480px] relative overflow-hidden rounded-xl"
         style={{
@@ -110,6 +112,7 @@ export default function LivePreview({ profile, links }: Props) {
           }}
         />
       </div>
+      </TiltCard>
       <p className="text-gray-500 text-xs mt-4">リアルタイムプレビュー</p>
     </div>
   );
