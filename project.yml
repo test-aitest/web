@@ -1,0 +1,81 @@
+name: CardLink
+options:
+  bundleIdPrefix: com.cardlink
+  deploymentTarget:
+    iOS: "26.0"
+  xcodeVersion: "26.0"
+  defaultConfig: Debug
+
+settings:
+  base:
+    SWIFT_VERSION: "6.2"
+    DEVELOPMENT_TEAM: ""
+
+targets:
+  CardLink:
+    type: application
+    platform: iOS
+    sources:
+      - path: CardLinkApp
+        excludes:
+          - "**/.DS_Store"
+    settings:
+      base:
+        INFOPLIST_FILE: CardLinkApp/Info.plist
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: true
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: true
+        INFOPLIST_KEY_UILaunchScreen_Generation: true
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_CFBundleDisplayName: CardLink
+        PRODUCT_BUNDLE_IDENTIFIER: com.cardlink.app
+        GENERATE_INFOPLIST_FILE: true
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 1.0
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_STYLE: Automatic
+    entitlements:
+      path: CardLink.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.cardlink.app
+
+  CardLinkWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: CardLinkWidget
+        excludes:
+          - "**/.DS_Store"
+      - path: CardLinkApp/Models
+      - path: CardLinkApp/Services/StyledQRGenerator.swift
+      - path: CardLinkApp/Helpers
+    settings:
+      base:
+        INFOPLIST_KEY_CFBundleDisplayName: CardLink Widget
+        INFOPLIST_KEY_NSHumanReadableCopyright: ""
+        PRODUCT_BUNDLE_IDENTIFIER: com.cardlink.app.widget
+        GENERATE_INFOPLIST_FILE: true
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 1.0
+        CODE_SIGN_STYLE: Automatic
+        ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME: WidgetBackground
+    dependencies:
+      - sdk: WidgetKit.framework
+      - sdk: SwiftUI.framework
+    entitlements:
+      path: CardLinkWidget.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.cardlink.app
+
+schemes:
+  CardLink:
+    build:
+      targets:
+        CardLink: all
+        CardLinkWidget: all
+    run:
+      config: Debug
+    archive:
+      config: Release
